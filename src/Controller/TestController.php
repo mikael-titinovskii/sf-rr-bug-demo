@@ -17,8 +17,16 @@ final class TestController extends AbstractController
     {
         $pid = getmypid();
         $session = $request->getSession();
-        if (rand(0,1) === 0 && $session->get('client') === '1'){
+        if (rand(0,4) !== 0 && $request->get('client') === '1'){
             throw new \Exception("Test exception pid( $pid )");
+        }
+
+        // reset the session
+        if (rand(0,10) === 10){
+            $session->clear();
+            $session->invalidate();
+            $session->getFlashBag()->clear();
+            $session->migrate(true);
         }
 
         // here we set the client var from the get param
@@ -31,7 +39,7 @@ final class TestController extends AbstractController
             'pid' => $pid,
             'cr' => $request->get('client'),
             'cs' => $session->get('client'),
-            'match' => $request->get('client') === $session->get('client') ? 'yes' : 'no ***',
+            'match' => $request->get('client') === $session->get('client') ? 'yes' : 'no ********',
         ]);
     }
 }
