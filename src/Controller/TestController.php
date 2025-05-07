@@ -15,9 +15,10 @@ final class TestController extends AbstractController
         Request $request
     ): JsonResponse
     {
+        $pid = getmypid();
         $session = $request->getSession();
         if (rand(0,1) === 0 && $session->get('client') === '1'){
-            throw new \Exception('Test exception');
+            throw new \Exception("Test exception pid( $pid )");
         }
 
         // here we set the client var from the get param
@@ -27,7 +28,7 @@ final class TestController extends AbstractController
 
         return $this->json([
             'session_id' => $session?->getId(),
-            'pid' => getmypid(),
+            'pid' => $pid,
             'cr' => $request->get('client'),
             'cs' => $session->get('client'),
             'match' => $request->get('client') === $session->get('client') ? 'yes' : 'no ***',
