@@ -8,6 +8,7 @@ server:
 http:
   address: 0.0.0.0:8081
   pool:
+    num_workers: 2
     debug: false
   middleware: [ "static", "gzip" ]
   uploads:
@@ -20,9 +21,9 @@ logs:
   mode: production
   channels:
     http:
-      level: debug # Log all http requests, set to info to disable
+      level: error
     server:
-      level: info # Everything written to worker stderr is logged
+      level: error
       mode: raw
     metrics:
       level: error
