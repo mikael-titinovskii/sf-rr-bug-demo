@@ -1,13 +1,13 @@
 {
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "baldinof/roadrunner-bundle": "^3.2",
+        "baldinof/roadrunner-bundle": "dev-reset-race-condition-fix",
         "spiral/roadrunner-cli": "^2.7",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
@@ -68,5 +68,11 @@
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.63"
-    }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/mikael-titinovskii/roadrunner-bundle.git"
+        }
+    ]
 }

@@ -4,21 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9dacaca334766864e9ba6f761bcae557",
+    "content-hash": "6f20d3c49b0bca4503ae8d0957b50cc7",
     "packages": [
         {
             "name": "baldinof/roadrunner-bundle",
-            "version": "3.2.2",
+            "version": "dev-reset-race-condition-fix",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Baldinof/roadrunner-bundle.git",
-                "reference": "9d4d700e31c72f2516387dd109dcc002a1143300"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Baldinof/roadrunner-bundle/zipball/9d4d700e31c72f2516387dd109dcc002a1143300",
-                "reference": "9d4d700e31c72f2516387dd109dcc002a1143300",
-                "shasum": ""
+                "url": "https://github.com/mikael-titinovskii/roadrunner-bundle.git",
+                "reference": "c00270a49dbe8ac75bb11f7d4fceb250082c883f"
             },
             "require": {
                 "php": ">=8.1",
@@ -75,7 +69,30 @@
                     "Baldinof\\RoadRunnerBundle\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\Baldinof\\RoadRunnerBundle\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit --testdox --colors=always"
+                ],
+                "phpstan": [
+                    "tools/vendor/bin/phpstan analyse --no-progress --ansi"
+                ],
+                "cs:lint": [
+                    "tools/vendor/bin/php-cs-fixer fix --dry-run --diff --ansi --allow-risky=yes"
+                ],
+                "cs:fix": [
+                    "tools/vendor/bin/php-cs-fixer fix --ansi --allow-risky=yes"
+                ],
+                "ci": [
+                    "@test",
+                    "@phpstan",
+                    "@cs:lint"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -86,17 +103,7 @@
                 }
             ],
             "description": "A RoadRunner worker as a Symfony Bundle",
-            "support": {
-                "issues": "https://github.com/Baldinof/roadrunner-bundle/issues",
-                "source": "https://github.com/Baldinof/roadrunner-bundle/tree/3.2.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/Baldinof",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-03-17T13:38:15+00:00"
+            "time": "2025-05-07T11:38:11+00:00"
         },
         {
             "name": "composer/semver",
@@ -4114,8 +4121,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {},
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "baldinof/roadrunner-bundle": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
